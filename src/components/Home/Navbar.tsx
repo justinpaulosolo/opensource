@@ -7,9 +7,15 @@ export default function Navbar() {
     <nav className="sticky top-0 bg-white py-5 px-8 shadow">
       <div className="mx-auto flex w-full max-w-4xl">
         <div className="flex w-full items-center justify-between">
-          <div className="items-center space-x-4">
-            <Link href="/">Home</Link>
-            <Link href="/about">About</Link>
+          <div className="flex items-center gap-4">
+            <Link href="/">
+              <a className="text-xl font-bold">OpenSource</a>
+            </Link>
+
+            <div className="items-center space-x-4">
+              <Link href="/">Home</Link>
+              <Link href="/about">About</Link>
+            </div>
           </div>
           {status === "authenticated" ? (
             <button

@@ -9,6 +9,8 @@ const Home: NextPage = () => {
   const { status } = useSession();
   const { isLoading, data } = trpc.project.getAll.useQuery();
 
+  console.log(data);
+
   if (isLoading) return <p>Loading</p>;
   return (
     <Container>
@@ -28,7 +30,6 @@ const Home: NextPage = () => {
 
           <div className="grid grid-cols-2 gap-4">
             {data?.map((item) => {
-              console.log(item, "from mapping");
               return <ProjectCard key={item.id} props={item} />;
             })}
           </div>

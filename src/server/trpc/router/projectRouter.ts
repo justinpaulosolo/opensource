@@ -42,7 +42,11 @@ export const projectRouter = t.router({
       })
       }),
   getAll: t.procedure.query(({ ctx }) => {
-    return ctx.prisma.project.findMany();
+    return ctx.prisma.project.findMany({
+      include: {
+        technologies: true
+      }
+    });
   })
 })
  

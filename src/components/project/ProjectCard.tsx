@@ -1,4 +1,4 @@
-import { SiLua, SiVim } from "react-icons/si";
+import { SiNextdotjs, SiPrisma, SiTypescript } from "react-icons/si";
 
 interface Props {
   id: string;
@@ -16,9 +16,10 @@ export default function ProjectCard({ props }: { props: Props }) {
     >
       <h1 className="text-lg font-semibold">{props.title}</h1>
       <p>{props.description}</p>
-      <div className="g flex space-x-2">
-        <SiVim />
-        <SiLua />
+      <div className="flex space-x-2">
+        <SiTypescript />
+        <SiNextdotjs />
+        <SiPrisma />
       </div>
     </div>
   );

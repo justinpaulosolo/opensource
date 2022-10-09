@@ -17,6 +17,11 @@ export default function Container(props: Props) {
       </Head>
       <Navbar />
       <main className="flex flex-col justify-center py-2 px-8">{children}</main>
+      <footer className="fixed inset-x-0 bottom-0 flex justify-center bg-white py-5 shadow">
+        <div className="w-full max-w-4xl">
+          <h4>Opensource</h4>
+        </div>
+      </footer>
     </div>
   );
 }

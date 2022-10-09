@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { trpc } from "../utils/trpc";
-import { getSession, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 type FormValues = {
   title: string;
@@ -29,6 +29,7 @@ const people = [
   { id: 11, name: "C++", unavailable: false },
   { id: 12, name: "Java", unavailable: false },
   { id: 13, name: "Python", unavailable: false },
+  { id: 14, name: "Tailwind", unavailable: false },
 ];
 
 export default function NewEvent() {
