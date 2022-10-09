@@ -16,20 +16,24 @@ export const projectRouter = t.router({
           title: input.title,
           description: input.description,
           repolink: input.repoLink,
-          technologys: {
-            create: 
-              input.technologies.map((item)=> {
-                return {technology: { create: { name: item }}}
-              })
-          }
+          technologies: {
+            connectOrCreate: input.technologies.map(tag => ({
+              where: { name: tag }, create:  { name: tag } 
+            }))
+        },
         }
       })
       return post
     }),
   delete: t.procedure
-    .input(z.number())
+    .input(z.string())
     .mutation(async ({ctx, input}) => {
-      return await ctx.prisma.project.delete({
+      await ctx.prisma.project.delete({
+        where: {
+          id: input
+        }
+      })
+      await ctx.prisma.technology.delete({
         where: {
           id: input
         }

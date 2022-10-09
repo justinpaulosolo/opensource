@@ -17,7 +17,7 @@ const Home: NextPage = () => {
               </button>
             </Link>
             <button
-              onClick={() => deleteProject.mutate(2)}
+              onClick={() => deleteProject.mutate("")}
               className="rounded-lg border border-black bg-black py-2 px-6 tracking-tight text-white hover:bg-white hover:text-black"
             >
               Delete test

@@ -2,7 +2,7 @@
 import { t } from "../trpc";
 import { exampleRouter } from "./example";
 import { authRouter } from "./auth";
-import { projectRouter } from "./project";
+import { projectRouter } from "./projectRouter";
 
 export const appRouter = t.router({
   example: exampleRouter,
