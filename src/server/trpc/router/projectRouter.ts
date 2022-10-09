@@ -7,6 +7,7 @@ export const projectRouter = t.router({
       title: z.string(),
       description: z.string(),
       repoLink: z.string(),
+      createdBy: z.string(),
       technologies: z.array(z.string())
     }))
     .mutation( async ({ctx, input}) => {
@@ -16,6 +17,7 @@ export const projectRouter = t.router({
           title: input.title,
           description: input.description,
           repolink: input.repoLink,
+          createdBy: input.createdBy,
           technologies: {
             connectOrCreate: input.technologies.map(tag => ({
               where: { name: tag }, create:  { name: tag } 
@@ -38,5 +40,9 @@ export const projectRouter = t.router({
           id: input
         }
       })
-      })
-    })
+      }),
+  getAll: t.procedure.query(({ ctx }) => {
+    return ctx.prisma.project.findMany();
+  })
+})
+ 

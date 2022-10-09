@@ -3,14 +3,16 @@ import Container from "../components/home/Container";
 import { FaArrowLeft, FaCheck } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Listbox } from "@headlessui/react";
+import { Listbox, Transition } from "@headlessui/react";
 import { trpc } from "../utils/trpc";
+import { getSession, useSession } from "next-auth/react";
 
 type FormValues = {
   title: string;
   description: string;
   repoLink: string;
   technologies: Array<string>;
+  createdBy: string;
 };
 
 const people = [
@@ -24,6 +26,9 @@ const people = [
   { id: 8, name: "Vim", unavailable: false },
   { id: 9, name: "Lua", unavailable: false },
   { id: 10, name: "Go", unavailable: false },
+  { id: 11, name: "C++", unavailable: false },
+  { id: 12, name: "Java", unavailable: false },
+  { id: 13, name: "Python", unavailable: false },
 ];
 
 export default function NewEvent() {
@@ -31,14 +36,16 @@ export default function NewEvent() {
   const [selectedPeople, setSelectedPeople] = useState([]);
   const router = useRouter();
   const { mutate } = trpc.project.create.useMutation();
+  const { data: Session } = useSession();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    data.technologies = selectedPeople.map(
+  const onSubmit: SubmitHandler<FormValues> = (formData) => {
+    formData.technologies = selectedPeople.map(
       (item: { id: number; name: string; unavailable: boolean }) => item.name
     );
-    mutate(data);
+    formData.createdBy = Session?.user?.id as string;
+    mutate(formData);
   };
-
+  console.log(Session, "session");
   return (
     <Container>
       <div className="mx-auto mt-5 flex w-full max-w-4xl flex-col gap-5 bg-gray-50">
@@ -94,21 +101,30 @@ export default function NewEvent() {
                   )
                 )}
               </Listbox.Button>
-              <Listbox.Options className="rounded-lg border p-2">
-                {people.map((person) => (
-                  <Listbox.Option
-                    key={person.id}
-                    value={person}
-                    disabled={person.unavailable}
-                    className=" rounded p-1 ui-active:bg-blue-500 ui-active:text-white ui-not-active:bg-white ui-not-active:text-black"
-                  >
-                    <div className="flex items-center gap-2">
-                      <FaCheck className="hidden ui-selected:block" />
-                      {person.name}
-                    </div>
-                  </Listbox.Option>
-                ))}
-              </Listbox.Options>
+              <Transition
+                enter="transition duration-100 ease-out"
+                enterFrom="transform scale-95 opacity-0"
+                enterTo="transform scale-100 opacity-100"
+                leave="transition duration-75 ease-out"
+                leaveFrom="transform scale-100 opacity-100"
+                leaveTo="transform scale-95 opacity-0"
+              >
+                <Listbox.Options className="rounded-lg border p-2">
+                  {people.map((person) => (
+                    <Listbox.Option
+                      key={person.id}
+                      value={person}
+                      disabled={person.unavailable}
+                      className="rounded p-1 ui-active:bg-blue-500 ui-active:text-white ui-not-active:bg-white ui-not-active:text-black"
+                    >
+                      <div className="flex items-center gap-2">
+                        <FaCheck className="hidden ui-selected:block" />
+                        {person.name}
+                      </div>
+                    </Listbox.Option>
+                  ))}
+                </Listbox.Options>
+              </Transition>
             </Listbox>
             <button
               type="submit"
