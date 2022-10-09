@@ -65,8 +65,25 @@ model VerificationToken {
 }
 
 model Project {
-    id          String @id @default(cuid())
+    id          Int                 @id @default(autoincrement())
     title       String
-    Description String
-    memmbers    User[]
+    description String
+    repolink    String
+    members     User[]
+    technologys ProjectTechnology[]
+}
+
+model Technology {
+    id       Int                 @id @default(autoincrement())
+    name     String
+    projects ProjectTechnology[]
+}
+
+model ProjectTechnology {
+    project      Project    @relation(fields: [projectId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+    projectId    Int
+    technology   Technology @relation(fields: [technologyId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+    technologyId Int
+
+    @@id([projectId, technologyId])
 }

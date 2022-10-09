@@ -4,5 +4,8 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    require('@headlessui/tailwindcss')({ prefix: 'ui' })
+  ],
 };
