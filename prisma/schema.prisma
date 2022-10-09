@@ -53,6 +53,7 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    projects      Project[]
 }
 
 model VerificationToken {
@@ -61,4 +62,11 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Project {
+    id          String @id @default(cuid())
+    title       String
+    Description String
+    memmbers    User[]
 }
