@@ -1,14 +1,20 @@
-import { SiNextdotjs, SiPrisma, SiTypescript } from "react-icons/si";
+import { TechIcon, TechListType } from "./TechIcons";
 
 interface Props {
   id: string;
   title: string;
   description: string;
   repolink: string;
+  technologies: Array<Technologies>;
 }
 
+type Technologies = {
+  id: string;
+  name: string;
+};
+
 export default function ProjectCard({ props }: { props: Props }) {
-  console.log(props);
+  const techArr = props.technologies.map((item) => item.name);
   return (
     <div
       key={props.id}
@@ -17,9 +23,7 @@ export default function ProjectCard({ props }: { props: Props }) {
       <h1 className="text-lg font-semibold">{props.title}</h1>
       <p>{props.description}</p>
       <div className="flex space-x-2">
-        <SiTypescript />
-        <SiNextdotjs />
-        <SiPrisma />
+        <TechIcon techs={techArr as Array<TechListType>} />
       </div>
     </div>
   );
