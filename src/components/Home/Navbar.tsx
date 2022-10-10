@@ -17,21 +17,31 @@ export default function Navbar() {
               <Link href="/about">About</Link>
             </div>
           </div>
-          {status === "authenticated" ? (
-            <button
-              onClick={() => signOut()}
-              className="rounded border border-blue-500 bg-blue-500 py-2 px-6 text-sm tracking-tight text-white hover:bg-white hover:text-blue-500"
-            >
-              Logout
-            </button>
-          ) : (
-            <button
-              onClick={() => signIn()}
-              className="rounded border border-blue-500 bg-blue-500 py-2 px-6 text-sm tracking-tight text-white hover:bg-white hover:text-blue-500"
-            >
-              Sign in
-            </button>
-          )}
+
+          <div>
+            {status === "authenticated" ? (
+              <div className="flex space-x-4">
+                <Link href="/dashboard">
+                  <button className="rounded border border-gray-300 bg-gray-500 py-2 px-6 text-sm tracking-tight text-white hover:bg-white hover:text-gray-500">
+                    Dashboard
+                  </button>
+                </Link>
+                <button
+                  onClick={() => signOut()}
+                  className="rounded border border-blue-500 bg-blue-500 py-2 px-6 text-sm tracking-tight text-white hover:bg-white hover:text-blue-500"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => signIn()}
+                className="rounded border border-blue-500 bg-blue-500 py-2 px-6 text-sm tracking-tight text-white hover:bg-white hover:text-blue-500"
+              >
+                Sign in
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </nav>
