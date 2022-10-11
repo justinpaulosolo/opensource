@@ -21,11 +21,13 @@
     "@trpc/server": "10.0.0-proxy-beta.15",
     "next": "12.3.1",
     "next-auth": "^4.12.3",
+    "octokit": "^2.0.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.37.0",
     "react-icons": "^4.4.0",
     "superjson": "1.9.1",
+    "swr": "^1.3.0",
     "zod": "^3.18.0"
   },
   "devDependencies": {
@@ -46,5 +48,12 @@
   },
   "ct3aMetadata": {
     "initVersion": "6.1.1"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true,
+    "singleAttributePerLine": true
   }
 }

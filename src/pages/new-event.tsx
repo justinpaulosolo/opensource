@@ -1,11 +1,11 @@
-import { useForm, SubmitHandler } from "react-hook-form";
-import Container from "../components/home/Container";
-import { FaArrowLeft, FaCheck } from "react-icons/fa";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { Listbox, Transition } from "@headlessui/react";
-import { trpc } from "../utils/trpc";
-import { useSession } from "next-auth/react";
+import { useForm, SubmitHandler } from 'react-hook-form';
+import Container from '../components/home/Container';
+import { FaArrowLeft, FaCheck } from 'react-icons/fa';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { Listbox, Transition } from '@headlessui/react';
+import { trpc } from '../utils/trpc';
+import { useSession } from 'next-auth/react';
 
 type FormValues = {
   title: string;
@@ -16,27 +16,27 @@ type FormValues = {
 };
 
 const people = [
-  { id: 1, name: "React", unavailable: false },
-  { id: 2, name: "Javascript", unavailable: false },
-  { id: 3, name: "C#", unavailable: false },
-  { id: 4, name: "Next.js", unavailable: false },
-  { id: 5, name: "Prisma", unavailable: false },
-  { id: 6, name: "Typescript", unavailable: false },
-  { id: 7, name: "Asp.net", unavailable: false },
-  { id: 8, name: "Vim", unavailable: false },
-  { id: 9, name: "Lua", unavailable: false },
-  { id: 10, name: "Go", unavailable: false },
-  { id: 11, name: "C++", unavailable: false },
-  { id: 12, name: "Java", unavailable: false },
-  { id: 13, name: "Python", unavailable: false },
-  { id: 14, name: "Tailwind", unavailable: false },
+  { id: 1, name: 'React', unavailable: false },
+  { id: 2, name: 'Javascript', unavailable: false },
+  { id: 3, name: 'C#', unavailable: false },
+  { id: 4, name: 'Next.js', unavailable: false },
+  { id: 5, name: 'Prisma', unavailable: false },
+  { id: 6, name: 'Typescript', unavailable: false },
+  { id: 7, name: 'Asp.net', unavailable: false },
+  { id: 8, name: 'Vim', unavailable: false },
+  { id: 9, name: 'Lua', unavailable: false },
+  { id: 10, name: 'Go', unavailable: false },
+  { id: 11, name: 'C++', unavailable: false },
+  { id: 12, name: 'Java', unavailable: false },
+  { id: 13, name: 'Python', unavailable: false },
+  { id: 14, name: 'Tailwind', unavailable: false },
 ];
 
 export default function NewEvent() {
   const { register, handleSubmit } = useForm<FormValues>();
   const [selectedPeople, setSelectedPeople] = useState([]);
   const router = useRouter();
-  const { mutate } = trpc.project.create.useMutation();
+  const { mutateAsync } = trpc.project.create.useMutation();
   const { data: Session } = useSession();
 
   const onSubmit: SubmitHandler<FormValues> = (formData) => {
@@ -44,9 +44,9 @@ export default function NewEvent() {
       (item: { id: number; name: string; unavailable: boolean }) => item.name
     );
     formData.createdBy = Session?.user?.id as string;
-    mutate(formData);
+    mutateAsync(formData).then(() => router.push('/'));
   };
-  console.log(Session, "session");
+  console.log(Session, 'session');
   return (
     <Container>
       <div className="mx-auto mt-5 flex w-full max-w-4xl flex-col gap-5 bg-gray-50">
@@ -67,17 +67,17 @@ export default function NewEvent() {
             <input
               placeholder="Title"
               className="w-full rounded-lg border p-5 text-sm"
-              {...register("title")}
+              {...register('title')}
             />
             <input
               placeholder="Description"
               className="w-full rounded-lg border p-5 text-sm"
-              {...register("description")}
+              {...register('description')}
             />
             <input
               placeholder="Github repo"
               className="w-full rounded-lg border p-5 text-sm"
-              {...register("repoLink")}
+              {...register('repoLink')}
             />
             <Listbox
               value={selectedPeople}

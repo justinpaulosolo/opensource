@@ -1,5 +1,5 @@
-import { signIn, signOut, useSession } from "next-auth/react";
-import Link from "next/link";
+import { signIn, signOut, useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 export default function Navbar() {
   const { status } = useSession();
@@ -19,7 +19,7 @@ export default function Navbar() {
           </div>
 
           <div>
-            {status === "authenticated" ? (
+            {status === 'authenticated' ? (
               <div className="flex space-x-4">
                 <Link href="/dashboard">
                   <button className="rounded border border-gray-300 bg-gray-500 py-2 px-6 text-sm tracking-tight text-white hover:bg-white hover:text-gray-500">
