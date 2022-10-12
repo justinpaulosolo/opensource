@@ -1,7 +1,7 @@
 import { FaArrowLeft } from 'react-icons/fa';
 import { useRouter } from 'next/router';
-import { trpc } from '../utils/trpc';
-import RepoCard from '../components/project/RepoCard';
+import { trpc } from '@utils/trpc';
+import RepoCard from '@components/project/RepoCard';
 
 export default function New() {
   const router = useRouter();

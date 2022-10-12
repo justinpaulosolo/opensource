@@ -1,4 +1,4 @@
-import { TechIcon, TechListType } from "./TechIcons";
+import { TechIcon, TechListType } from './TechIcons';
 
 interface Props {
   id: string;
@@ -18,9 +18,13 @@ export default function ProjectCard({ props }: { props: Props }) {
   return (
     <div
       key={props.id}
-      className="w-full space-y-2 rounded-lg border bg-white p-5 drop-shadow-sm transition-all hover:scale-[1.02] hover:cursor-pointer"
+      className="w-full space-y-2 rounded-lg border bg-white p-5 hover:cursor-pointer hover:border-gray-300"
     >
-      <a href={props.repolink} target="_blank" rel="noreferrer">
+      <a
+        href={props.repolink}
+        target="_blank"
+        rel="noreferrer"
+      >
         <h1 className="text-lg font-semibold">{props.title}</h1>
         <p>{props.description}</p>
         <div className="flex space-x-2">
