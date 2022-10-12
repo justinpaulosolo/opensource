@@ -1,10 +1,11 @@
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { Button } from '../common/button';
 
 export default function Navbar() {
   const { status } = useSession();
   return (
-    <nav className="sticky top-0 bg-white py-5 px-8 shadow">
+    <nav className="sticky top-0 border-b bg-white py-3 px-8">
       <div className="mx-auto flex w-full max-w-4xl">
         <div className="flex w-full items-center justify-between">
           <div className="flex items-center gap-4">
@@ -22,24 +23,22 @@ export default function Navbar() {
             {status === 'authenticated' ? (
               <div className="flex space-x-4">
                 <Link href="/dashboard">
-                  <button className="rounded border border-gray-300 bg-gray-500 py-2 px-6 text-sm tracking-tight text-white hover:bg-white hover:text-gray-500">
-                    Dashboard
-                  </button>
+                  <Button>Dashboard</Button>
                 </Link>
-                <button
+                <Button
                   onClick={() => signOut()}
-                  className="rounded border border-blue-500 bg-blue-500 py-2 px-6 text-sm tracking-tight text-white hover:bg-white hover:text-blue-500"
+                  variant="primary-inverted"
                 >
                   Logout
-                </button>
+                </Button>
               </div>
             ) : (
-              <button
+              <Button
                 onClick={() => signIn()}
-                className="rounded border border-blue-500 bg-blue-500 py-2 px-6 text-sm tracking-tight text-white hover:bg-white hover:text-blue-500"
+                variant="secondary"
               >
                 Sign in
-              </button>
+              </Button>
             )}
           </div>
         </div>
