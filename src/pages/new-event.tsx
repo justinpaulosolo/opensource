@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import Container from '../components/home/Container';
+// import Container from '../components/home/Container';
 import { FaArrowLeft, FaCheck } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -48,7 +48,7 @@ export default function NewEvent() {
   };
 
   return (
-    <Container>
+    <>
       <div className="mx-auto mt-5 flex w-full max-w-4xl flex-col gap-5 bg-gray-50">
         <button
           onClick={() => router.back()}
@@ -136,6 +136,6 @@ export default function NewEvent() {
           </form>
         </div>
       </div>
-    </Container>
+    </>
   );
 }

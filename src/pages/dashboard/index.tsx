@@ -1,4 +1,4 @@
-import Container from '../../components/home/Container';
+// import Container from '../../components/home/Container';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import ProtectProjectCard from '../../components/dashboard/ProtectedProjectCard';
 import { trpc } from '../../utils/trpc';
@@ -16,19 +16,19 @@ export default function Dashboard() {
   };
 
   return (
-    <Container>
-      <DashboardLayout>
-        {' '}
-        {data?.map((item) => {
-          return (
-            <ProtectProjectCard
-              key={item.id}
-              props={item}
-              callback={handleDelete}
-            />
-          );
-        })}
-      </DashboardLayout>
-    </Container>
+    // <Container>
+    <DashboardLayout>
+      {' '}
+      {data?.map((item) => {
+        return (
+          <ProtectProjectCard
+            key={item.id}
+            props={item}
+            callback={handleDelete}
+          />
+        );
+      })}
+    </DashboardLayout>
+    // </Container>
   );
 }

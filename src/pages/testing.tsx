@@ -1,4 +1,3 @@
-import Container from '../components/home/Container';
 import { trpc } from '../utils/trpc';
 
 export default function Testing() {
@@ -9,10 +8,8 @@ export default function Testing() {
   console.log(data);
 
   return (
-    <Container>
-      <div>
-        <h1>Testing Page</h1>
-      </div>
-    </Container>
+    <div>
+      <h1>Testing Page</h1>
+    </div>
   );
 }
