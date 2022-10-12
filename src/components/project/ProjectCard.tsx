@@ -1,5 +1,6 @@
 import { TechIcon, TechListType } from './TechIcons';
 
+// TODO: Move type to a separate file
 interface Props {
   id: string;
   title: string;

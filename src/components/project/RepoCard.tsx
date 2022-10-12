@@ -8,6 +8,9 @@ interface Props {
 }
 
 export default function RepoCard({ props }: { props: Props }) {
+  // ** Move state to parent component.
+  // ** This component should be a pure function.
+  // ** It should not have any state.
   const [isSelected, setIsSelected] = useState(false);
 
   const toggleSelect = () => {
