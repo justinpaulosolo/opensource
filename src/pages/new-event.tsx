@@ -46,7 +46,7 @@ export default function NewEvent() {
     formData.createdBy = Session?.user?.id as string;
     mutateAsync(formData).then(() => router.push('/'));
   };
-  console.log(Session, 'session');
+
   return (
     <Container>
       <div className="mx-auto mt-5 flex w-full max-w-4xl flex-col gap-5 bg-gray-50">

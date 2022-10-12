@@ -1,13 +1,13 @@
-import useSWR from 'swr';
 import Container from '../components/home/Container';
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import { trpc } from '../utils/trpc';
 
 export default function Testing() {
-  const { data, error } = useSWR<any>('/api/github', fetcher);
-  console.log(data);
+  //const { data } = trpc.github.getUser.useQuery('justinpaulosolo');
+  //const { data } = trpc.github.getRepos.useQuery('justinpaulosolo');
+  const { data } = trpc.github.getReposTest.useQuery();
 
   console.log(data);
+
   return (
     <Container>
       <div>
