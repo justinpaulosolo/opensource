@@ -4,14 +4,14 @@ import Link from 'next/link';
 // import Container from '../components/home/Container';
 import ProjectCard from '../components/project/ProjectCard';
 import { trpc } from '../utils/trpc';
-import { SpinnerShits } from '../components/commons/SpinnerShits';
+import { Spinner } from '../components/commons/Spinner';
 
 const Home: NextPage = () => {
   const { status } = useSession();
   const { isLoading, data } = trpc.project.getAll.useQuery();
 
   if (isLoading) {
-    return <SpinnerShits />;
+    return <Spinner />;
   }
 
   return (
