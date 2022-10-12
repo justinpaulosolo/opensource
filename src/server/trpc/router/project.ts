@@ -1,8 +1,8 @@
-import { t } from '../trpc';
+import { t, authedProcedure } from '../trpc';
 import { z } from 'zod';
 
 export const projectRouter = t.router({
-  create: t.procedure
+  create: authedProcedure
     .input(
       z.object({
         title: z.string(),
@@ -29,7 +29,7 @@ export const projectRouter = t.router({
       });
       return post;
     }),
-  delete: t.procedure.input(z.string()).mutation(async ({ ctx, input }) => {
+  delete: authedProcedure.input(z.string()).mutation(async ({ ctx, input }) => {
     await ctx.prisma.project.delete({
       where: {
         id: input,

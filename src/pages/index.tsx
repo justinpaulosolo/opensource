@@ -6,10 +6,16 @@ import { Button } from '@components/common/Button';
 import { Spinner } from '@components/common/Spinner';
 import ProjectCard from '@components/project/ProjectCard';
 import { trpc } from '@utils/trpc';
+import { AnimatePresence } from 'framer-motion';
 
 const Home: NextPage = () => {
   const { status } = useSession();
-  const { isLoading, data } = trpc.project.getAll.useQuery();
+  const { isLoading, data: projects } = trpc.project.getAll.useQuery(
+    undefined,
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
 
   return (
     <React.Fragment>
@@ -31,14 +37,17 @@ const Home: NextPage = () => {
                 ''
               )}
               <div className="grid grid-cols-2 gap-4">
-                {data?.map((item) => {
-                  return (
-                    <ProjectCard
-                      key={item.id}
-                      props={item}
-                    />
-                  );
-                })}
+                <AnimatePresence>
+                  {projects?.map((item, i) => {
+                    return (
+                      <ProjectCard
+                        key={item.id}
+                        props={item}
+                        i={i}
+                      />
+                    );
+                  })}
+                </AnimatePresence>
               </div>
             </React.Fragment>
           )}
