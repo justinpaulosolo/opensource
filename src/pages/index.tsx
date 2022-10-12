@@ -2,9 +2,10 @@ import type { NextPage } from 'next';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React from 'react';
-import { Spinner } from '../components/common/spinner';
-import ProjectCard from '../components/project/ProjectCard';
-import { trpc } from '../utils/trpc';
+import { Button } from '@components/common/Button';
+import { Spinner } from '@components/common/spinner';
+import ProjectCard from '@components/project/ProjectCard';
+import { trpc } from '@utils/trpc';
 
 const Home: NextPage = () => {
   const { status } = useSession();
@@ -23,9 +24,7 @@ const Home: NextPage = () => {
               {status === 'authenticated' ? (
                 <div>
                   <Link href="/new-event">
-                    <button className="rounded-lg border border-black bg-black py-2 px-6 tracking-tight text-white hover:bg-white hover:text-black">
-                      New project
-                    </button>
+                    <Button>New project</Button>
                   </Link>
                 </div>
               ) : (

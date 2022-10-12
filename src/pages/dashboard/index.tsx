@@ -1,8 +1,8 @@
-// import Container from '../../components/home/Container';
-import { Spinner } from '../../components/common/spinner';
-import DashboardLayout from '../../components/dashboard/DashboardLayout';
-import ProtectProjectCard from '../../components/dashboard/ProtectedProjectCard';
-import { trpc } from '../../utils/trpc';
+import DashboardLayout from '@components/dashboard/DashboardLayout';
+import ProtectProjectCard from '@components/dashboard/ProtectedProjectCard';
+import { Spinner } from '@components/common/spinner';
+import { trpc } from '@utils/trpc';
+
 export default function Dashboard() {
   const { data, isLoading, refetch } = trpc.project.getByUser.useQuery();
   const { mutateAsync } = trpc.project.delete.useMutation();

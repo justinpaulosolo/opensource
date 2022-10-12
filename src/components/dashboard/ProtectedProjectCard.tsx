@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
-import { TechIcon, TechListType } from '../project/TechIcons';
+import { Button } from '@components/common/Button';
+import { TechIcon, TechListType } from '@components/project/TechIcons';
 
 interface Props {
   id: string;
@@ -40,18 +41,13 @@ export default function ProtectProjectCard({
       </div>
 
       <div className="flex space-x-2">
-        <button
-          onClick={onDelete}
-          className="rounded bg-red-500 py-1 px-5 text-sm text-white"
-        >
-          Delete
-        </button>
-        <button
+        <Button onClick={onDelete}>Delete</Button>
+        <Button
           onClick={() => router.push(`dashboard/edit/${props.id}`)}
-          className="rounded bg-yellow-500 py-1 px-5 text-sm text-white"
+          variant="secondary"
         >
           Edit
-        </button>
+        </Button>
       </div>
     </div>
   );

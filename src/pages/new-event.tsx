@@ -1,11 +1,11 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-// import Container from '../components/home/Container';
 import { FaArrowLeft, FaCheck } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
-import { trpc } from '../utils/trpc';
 import { useSession } from 'next-auth/react';
+import { trpc } from '@utils/trpc';
+import { Button } from '@components/common/Button';
 
 type FormValues = {
   title: string;
@@ -15,7 +15,7 @@ type FormValues = {
   createdBy: string;
 };
 
-const people = [
+const tech = [
   { id: 1, name: 'React', unavailable: false },
   { id: 2, name: 'Javascript', unavailable: false },
   { id: 3, name: 'C#', unavailable: false },
@@ -34,13 +34,13 @@ const people = [
 
 export default function NewEvent() {
   const { register, handleSubmit } = useForm<FormValues>();
-  const [selectedPeople, setSelectedPeople] = useState([]);
+  const [technologies, setTechnologies] = useState([]);
   const router = useRouter();
-  const { mutateAsync } = trpc.project.create.useMutation();
+  const { mutateAsync, isLoading } = trpc.project.create.useMutation();
   const { data: Session } = useSession();
 
   const onSubmit: SubmitHandler<FormValues> = (formData) => {
-    formData.technologies = selectedPeople.map(
+    formData.technologies = technologies.map(
       (item: { id: number; name: string; unavailable: boolean }) => item.name
     );
     formData.createdBy = Session?.user?.id as string;
@@ -80,22 +80,22 @@ export default function NewEvent() {
               {...register('repoLink')}
             />
             <Listbox
-              value={selectedPeople}
-              onChange={setSelectedPeople}
+              value={technologies}
+              onChange={setTechnologies}
               multiple
             >
               <Listbox.Button className="flex w-full space-x-2 rounded-lg border p-5 text-sm">
-                {selectedPeople.length === 0 ? (
+                {technologies.length === 0 ? (
                   <p className="text-sm text-gray-400">Select technologies</p>
                 ) : (
-                  selectedPeople.map(
-                    (person: { name: string; unavailable: boolean }, index) => {
+                  technologies.map(
+                    (tech: { name: string; unavailable: boolean }, index) => {
                       return (
                         <div
                           key={index}
                           className="rounded border bg-gray-200 px-4"
                         >
-                          <p>{person.name}</p>
+                          <p>{tech.name}</p>
                         </div>
                       );
                     }
@@ -111,7 +111,7 @@ export default function NewEvent() {
                 leaveTo="transform scale-95 opacity-0"
               >
                 <Listbox.Options className="rounded-lg border p-2">
-                  {people.map((person) => (
+                  {tech.map((person) => (
                     <Listbox.Option
                       key={person.id}
                       value={person}
@@ -127,12 +127,14 @@ export default function NewEvent() {
                 </Listbox.Options>
               </Transition>
             </Listbox>
-            <button
-              type="submit"
-              className="rounded-md border border-black bg-black py-4 text-sm tracking-wide text-white hover:bg-white hover:text-black"
-            >
-              Submit
-            </button>
+            <div>
+              <Button
+                loading={isLoading}
+                type="submit"
+              >
+                Submit
+              </Button>
+            </div>
           </form>
         </div>
       </div>

@@ -1,5 +1,5 @@
-import { Button } from '../components/common/button';
-import { trpc } from '../utils/trpc';
+import { Button } from '@components/common/Button';
+import { trpc } from '@utils/trpc';
 
 export default function Testing() {
   //const { data } = trpc.github.getUser.useQuery('justinpaulosolo');
