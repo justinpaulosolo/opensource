@@ -9,7 +9,6 @@ const Home: NextPage = () => {
   const { status } = useSession();
   const { isLoading, data } = trpc.project.getAll.useQuery();
 
-  console.log(data);
   return (
     <Container>
       {isLoading ? (

@@ -13,7 +13,6 @@ export const projectRouter = t.router({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      console.log(input);
       const post = await ctx.prisma.project.create({
         data: {
           title: input.title,
@@ -46,7 +45,6 @@ export const projectRouter = t.router({
   }),
   getByUser: t.procedure.query(async ({ ctx }) => {
     const userId = await ctx?.session?.user?.id;
-    console.log(userId);
     const data = await ctx.prisma.project.findMany({
       where: {
         createdBy: userId,
