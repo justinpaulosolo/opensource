@@ -7,7 +7,7 @@ export default function Testing() {
   const { data } = trpc.github.getReposTest.useQuery();
 
   console.log(data);
-  const loading = false;
+  const loading = true;
 
   return (
     <div className="flex flex-col gap-5">

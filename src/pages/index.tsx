@@ -3,7 +3,7 @@ import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React from 'react';
 import { Button } from '@components/common/Button';
-import { Spinner } from '@components/common/spinner';
+import { Spinner } from '@components/common/Spinner';
 import ProjectCard from '@components/project/ProjectCard';
 import { trpc } from '@utils/trpc';
 

@@ -1,6 +1,6 @@
 import DashboardLayout from '@components/dashboard/DashboardLayout';
 import ProtectProjectCard from '@components/dashboard/ProtectedProjectCard';
-import { Spinner } from '@components/common/spinner';
+import { Spinner } from '@components/common/Spinner';
 import { trpc } from '@utils/trpc';
 
 export default function Dashboard() {
