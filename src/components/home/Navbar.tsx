@@ -5,17 +5,23 @@ import { Button } from '@components/common/Button';
 export default function Navbar() {
   const { status } = useSession();
   return (
-    <nav className="sticky top-0 border-b bg-white py-3 px-8">
-      <div className="mx-auto flex w-full max-w-4xl">
-        <div className="flex w-full items-center justify-between">
+    <nav className="sticky top-0">
+      <div className="mx-auto flex w-full max-w-4xl border-b border-gray-800 border-gray-900 bg-gray-900 bg-opacity-30 backdrop-blur-lg backdrop-filter">
+        <div className="flex w-full items-center justify-between py-2">
           <div className="flex items-center gap-4">
             <Link href="/">
-              <a className="text-xl font-bold">OpenSource</a>
+              <a className=" text-lg font-light tracking-wide text-gray-0">
+                Open<span className="font-bold">Source</span>
+              </a>
             </Link>
 
             <div className="items-center space-x-4">
-              <Link href="/">Home</Link>
-              <Link href="/about">About</Link>
+              <Link href="/">
+                <a className="text-base text-gray-300">Home</a>
+              </Link>
+              <Link href="/">
+                <a className="text-base text-gray-300">About</a>
+              </Link>
             </div>
           </div>
 
@@ -23,11 +29,11 @@ export default function Navbar() {
             {status === 'authenticated' ? (
               <div className="flex space-x-4">
                 <Link href="/dashboard">
-                  <Button>Dashboard</Button>
+                  <Button variant="secondary">Dashboard</Button>
                 </Link>
                 <Button
                   onClick={() => signOut()}
-                  variant="primary-inverted"
+                  variant="secondary"
                 >
                   Logout
                 </Button>

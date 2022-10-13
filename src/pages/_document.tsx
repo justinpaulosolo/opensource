@@ -12,7 +12,7 @@ export default function Document(props: any) {
           crossOrigin="anonymous"
         />
       </Head>
-      <body>
+      <body className="bg-black text-white dark:bg-black">
         <Main />
         <NextScript />
       </body>

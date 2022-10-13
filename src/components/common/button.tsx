@@ -40,17 +40,18 @@ export const BUTTON_SIZES = {
 };
 
 export const BUTTON_VARIANT = {
-  primary: 'text-white border-black bg-black hover:bg-white hover:text-black',
+  primary:
+    'text-white border-primary-800 bg-primary-700 hover:bg-primary-800 shadow',
   'primary-inverted':
-    'text-gray-500 border-gray-200 bg-white hover:text-gray-600 hover:border-gray-300',
+    'text-gray-500 border-gray-200 bg-white hover:text-gray-600 hover:border-gray-300 shadow',
   secondary:
-    'text-white border-blue-500 bg-blue-500 hover:bg-white hover:text-blue-500',
+    'text-gray-300 border-gray-700 bg-gray-800 hover:bg-gray-700 hover:border-gray-600 shadow',
   'secondary-inverted':
-    'text-blue-500 border-blue-200 bg-white hover:text-white hover:bg-blue-500',
+    'text-blue-500 border-blue-200 bg-white hover:text-white hover:bg-blue-500 shadow',
   danger:
-    'text-white border-red-500 bg-red-500 hover:bg-white hover:text-red-500',
+    'text-white border-red-500 bg-red-500 hover:bg-white hover:text-red-500 shadow',
   'danger-inverted':
-    'text-red-500 border-red-200 bg-white hover:text-white hover:bg-red-500',
+    'text-red-500 border-red-200 bg-white hover:text-white hover:bg-red-500 shadow',
 };
 
 export const getButtonClasses = (

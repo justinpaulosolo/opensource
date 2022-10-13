@@ -32,7 +32,7 @@ export default function ProtectProjectCard({
   return (
     <div
       key={props.id}
-      className="w-full space-y-2 rounded-lg border bg-white p-5 drop-shadow-sm transition-all"
+      className="w-full space-y-2 rounded border border-gray-800 bg-gray-900 p-5"
     >
       <h1 className="text-lg font-semibold">{props.title}</h1>
       <p>{props.description}</p>
@@ -41,7 +41,12 @@ export default function ProtectProjectCard({
       </div>
 
       <div className="flex space-x-2">
-        <Button onClick={onDelete}>Delete</Button>
+        <Button
+          variant="secondary"
+          onClick={onDelete}
+        >
+          Delete
+        </Button>
         <Button
           onClick={() => router.push(`dashboard/edit/${props.id}`)}
           variant="secondary"

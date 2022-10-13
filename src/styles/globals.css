@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 #__next {
-  @apply bg-gray-50;
+  @apply bg-gray-900;
   min-height: 100vh;
 }
 

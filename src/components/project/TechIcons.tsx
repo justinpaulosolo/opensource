@@ -11,14 +11,14 @@ import {
   SiGo,
   SiCplusplus,
   SiJava,
-} from "react-icons/si";
+} from 'react-icons/si';
 
 //Todo: Read into this more
 export type TechListType = keyof typeof techList;
 
 export type TechIconsProps = {
   techs: Array<TechListType>;
-} & React.ComponentPropsWithoutRef<"ul">;
+} & React.ComponentPropsWithoutRef<'ul'>;
 
 export function TechIcon({ techs }: TechIconsProps) {
   return (
@@ -28,8 +28,11 @@ export function TechIcon({ techs }: TechIconsProps) {
         const current = techList[tech];
 
         return (
-          <li key={index} className="flex">
-            <current.icon className="h-5 w-5" />
+          <li
+            key={index}
+            className="flex"
+          >
+            <current.icon className="h-5 w-5 text-gray-500" />
           </li>
         );
       })}
@@ -38,7 +41,7 @@ export function TechIcon({ techs }: TechIconsProps) {
 }
 
 const techList = {
-  "Next.js": {
+  'Next.js': {
     icon: SiNextdotjs,
   },
   Tailwind: {
@@ -50,13 +53,13 @@ const techList = {
   React: {
     icon: SiReact,
   },
-  "C#": {
+  'C#': {
     icon: SiCsharp,
   },
   Prisma: {
     icon: SiPrisma,
   },
-  "Asp.net": {
+  'Asp.net': {
     icon: SiDotnet,
   },
   Vim: {
@@ -68,7 +71,7 @@ const techList = {
   Go: {
     icon: SiGo,
   },
-  "C++": {
+  'C++': {
     icon: SiCplusplus,
   },
   Java: {
