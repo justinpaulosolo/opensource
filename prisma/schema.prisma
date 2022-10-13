@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
     provider        = "prisma-client-js"
     previewFeatures = ["referentialIntegrity"]
@@ -8,10 +5,6 @@ generator client {
 
 datasource db {
     provider             = "mysql"
-    // NOTE: When using postgresql, mysql or sqlserver, uncomment the @db.Text annotations in model Account below
-    // Further reading: 
-    // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
-    // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
     url                  = env("DATABASE_URL")
     referentialIntegrity = "prisma"
 }
@@ -20,7 +13,6 @@ model Example {
     id String @id @default(cuid())
 }
 
-// Necessary for Next auth
 model Account {
     id                String  @id @default(cuid())
     userId            String
@@ -55,7 +47,7 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
-    projects      Project[]
+    Project       Project[]
 }
 
 model VerificationToken {
@@ -67,19 +59,30 @@ model VerificationToken {
 }
 
 model Project {
-    id           String       @id @default(cuid())
-    title        String
-    description  String
-    repolink     String
-    createdBy    String
-    createdAt    DateTime     @default(now())
-    updatedAt    DateTime     @updatedAt
-    members      User[]
-    technologies Technology[]
+    id          String       @id @default(cuid())
+    name        String
+    fullName    String
+    description String
+    repolink    String
+    owner       ProjectOwner @relation(fields: [ownerId], references: [id])
+    ownerId     Int
+    creator     User         @relation(fields: [createdById], references: [id])
+    createdById String
+    uploadedAt  DateTime     @default(now())
+    topics      Topics[]
 }
 
-model Technology {
-    id       String    @id @default(cuid())
-    name     String    @unique
-    projects Project[]
+model ProjectOwner {
+    id        Int       @id @unique
+    avatarUrl String
+    login     String
+    reposUrl  String
+    url       String
+    Project   Project[]
+}
+
+model Topics {
+    id      String    @id @default(cuid())
+    name    String
+    Project Project[]
 }

@@ -8,7 +8,7 @@ interface Props {
 export default function Container(props: Props) {
   const { children } = props;
   return (
-    <div>
+    <div className="bg-gray-900">
       <Head>
         <title>Create T3 App</title>
         <meta
@@ -22,9 +22,11 @@ export default function Container(props: Props) {
       </Head>
       <Navbar />
       <main className="flex flex-col justify-center py-2 px-8">{children}</main>
-      <footer className="fixed inset-x-0 bottom-0 flex justify-center border-t bg-white py-3 ">
-        <div className="w-full max-w-4xl">
-          <h4>Opensource</h4>
+      <footer className="fixed inset-x-0 bottom-0 flex justify-center bg-gray-900 py-3 ">
+        <div className="w-full max-w-4xl border-t border-gray-800">
+          <div className="flex">
+            <h4 className="text-gray-700">Opensource</h4>
+          </div>
         </div>
       </footer>
     </div>

@@ -2,12 +2,10 @@ import { Button } from '@components/common/Button';
 import { trpc } from '@utils/trpc';
 
 export default function Testing() {
-  //const { data } = trpc.github.getUser.useQuery('justinpaulosolo');
-  //const { data } = trpc.github.getRepos.useQuery('justinpaulosolo');
   const { data } = trpc.github.getReposTest.useQuery();
 
   console.log(data);
-  const loading = true;
+  const loading = false;
 
   return (
     <div className="flex flex-col gap-5">

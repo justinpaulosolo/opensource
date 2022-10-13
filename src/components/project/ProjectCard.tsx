@@ -36,20 +36,19 @@ export default function ProjectCard({ props, i }: { props: Props; i: number }) {
           };
         },
       }}
-      whileHover={{ scale: 1.01 }}
       initial="hidden"
       animate="visible"
       custom={i}
       key={props.id}
-      className="w-full space-y-2 rounded-lg border bg-white p-5 hover:cursor-pointer hover:border-gray-300"
+      className="w-full space-y-2 rounded border border-gray-700 bg-gray-900 p-5 hover:cursor-pointer hover:border-gray-700 hover:bg-gray-800"
     >
       <a
         href={props.repolink}
         target="_blank"
         rel="noreferrer"
       >
-        <h1 className="text-lg font-semibold">{props.title}</h1>
-        <p>{props.description}</p>
+        <h1 className="text-lg font-semibold text-gray-0">{props.title}</h1>
+        <p className="text-gray-300">{props.description}</p>
         <div className="flex space-x-2">
           <TechIcon techs={techArr as Array<TechListType>} />
         </div>

@@ -22,21 +22,24 @@ export default function RepoCard({ props }: { props: Props }) {
     <div
       key={props.id}
       className={
-        'w-full space-y-2 rounded-lg border bg-white p-5 drop-shadow-sm transition-all hover:scale-[1.02] hover:cursor-pointer' +
+        'w-full space-y-2 rounded border border-gray-800 bg-gray-900 p-5 transition-all hover:cursor-pointer' +
         (isSelected ? 'border-2 border-solid border-green-500' : 'border-none')
       }
       onClick={toggleSelect}
     >
-      <h1 className="text-center text-lg font-semibold hover:text-blue-600">
+      <h1 className="text-center text-lg font-semibold hover:text-gray-600">
         <a
           href={props.repolink}
           target="_blank"
           rel="noreferrer"
+          className="text-gray-0"
         >
           {props.title}
         </a>
       </h1>
-      <p>{props?.description?.substring(0, 50) + '...'}</p>
+      <p className="text-gray-300">
+        {props?.description?.substring(0, 50) + '...'}
+      </p>
     </div>
   );
 }
