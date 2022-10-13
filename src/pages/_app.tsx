@@ -1,9 +1,8 @@
-// src/pages/_app.tsx
-import { SessionProvider } from 'next-auth/react';
+import '@styles/globals.css';
 import type { Session } from 'next-auth';
 import type { AppType } from 'next/app';
-import '@styles/globals.css';
 import { trpc } from '@utils/trpc';
+import { SessionProvider } from 'next-auth/react';
 import Container from '@components/home/Container';
 
 const MyApp: AppType<{ session: Session | null }> = ({

@@ -4,30 +4,30 @@ import { Spinner } from '@components/common/Spinner';
 import { trpc } from '@utils/trpc';
 
 export default function Dashboard() {
-  const { data, isLoading, refetch } = trpc.project.getByUser.useQuery();
+  const {
+    data: projects,
+    isLoading,
+    refetch,
+  } = trpc.project.getByUser.useQuery();
   const { mutateAsync } = trpc.project.delete.useMutation();
 
   const handleDelete = (id: string) => {
     mutateAsync(id).then(() => refetch());
   };
 
+  if (isLoading) return <Spinner />;
+
   return (
     <DashboardLayout>
-      {isLoading ? (
-        <div className="mx-auto">
-          <Spinner />
-        </div>
-      ) : (
-        data?.map((item) => {
-          return (
-            <ProtectProjectCard
-              key={item.id}
-              props={item}
-              callback={handleDelete}
-            />
-          );
-        })
-      )}
+      {projects?.map((item) => {
+        return (
+          <ProtectProjectCard
+            key={item.id}
+            props={item}
+            callback={handleDelete}
+          />
+        );
+      })}
     </DashboardLayout>
   );
 }
