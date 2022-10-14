@@ -6,7 +6,7 @@ export default function Navbar() {
   const { status } = useSession();
   return (
     <nav className="sticky top-0">
-      <div className="mx-auto flex w-full max-w-4xl border-b border-gray-800 border-gray-900 bg-gray-900 bg-opacity-30 backdrop-blur-lg backdrop-filter">
+      <div className="mx-auto flex w-full max-w-4xl border-b  border-gray-900 bg-gray-900 bg-opacity-30 backdrop-blur-lg backdrop-filter">
         <div className="flex w-full items-center justify-between py-2">
           <div className="flex items-center gap-4">
             <Link href="/">

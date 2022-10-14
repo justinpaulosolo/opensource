@@ -1,4 +1,4 @@
-import Container from '@components/home/Container';
+import Container from '@components/common/Container';
 
 export default function EditProject() {
   return (
