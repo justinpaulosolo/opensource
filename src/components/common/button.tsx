@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
-import { Spinner } from './Spinner';
+import Spinner from './Spinner';
 
 export type HTMLButtonProps = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
