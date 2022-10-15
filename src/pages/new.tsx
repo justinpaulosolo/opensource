@@ -2,7 +2,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import { trpc } from '@utils/trpc';
 import RepoCard from '@components/project/RepoCard';
-import { Button } from '@components/common/Button';
+import { Button } from '@components/common/button';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 
@@ -11,6 +11,7 @@ export default function New() {
   const { data } = trpc.github.getReposTest.useQuery();
   const [selectedItem, setSelectedItem] = useState(null);
   const session = useSession();
+  const projectMutation = trpc.project.create.useMutation();
 
   console.log('This is the data we are getting: ', data?.data);
 
@@ -32,28 +33,19 @@ export default function New() {
       <pre className="">{JSON.stringify(selectedItem)}</pre>
 
       <div className="grid grid-cols-2 gap-4">
-        {data?.data?.map((item: any) => {
+        {data?.data?.map((item: any, i) => {
           const refactorData = {
-            id: item.id,
             fullName: item.full_name,
             name: item.name,
             description: item.description,
             repolink: item.html_url,
-            owner: {
-              id: item.owner.id,
-              avatarUrl: item.owner.avatar_url,
-              login: item.owner.login,
-              reposUrl: item.owner.repos_url,
-              url: item.owner.url,
-            },
-            ownerId: item.owner.id,
             creator: session.data?.user?.email as string,
             topics: item.topics,
           };
 
           return (
             <RepoCard
-              key={item.id}
+              key={i}
               props={refactorData}
               setter={(props: any) => {
                 setSelectedItem(props);
@@ -67,7 +59,10 @@ export default function New() {
         type="submit"
         className="rounded-md border border-black bg-black py-4 text-sm tracking-wide text-white hover:bg-white hover:text-black"
         disabled={!!!selectedItem}
-        onClick={handleSubmit}
+        onClick={() => {
+          console.log(selectedItem);
+          projectMutation.mutate(selectedItem!);
+        }}
       >
         Submit
       </button>

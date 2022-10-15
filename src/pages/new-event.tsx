@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { useSession } from 'next-auth/react';
 import { trpc } from '@utils/trpc';
-import { Button } from '@components/common/Button';
+import { Button } from '@components/common/button';
 
 type FormValues = {
   title: string;

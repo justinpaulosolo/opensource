@@ -4,14 +4,7 @@ export type Repo = {
   fullName: string;
   description: string;
   repolink: string;
-  owner: {
-    id: number;
-    avatarUrl: string;
-    login: string;
-    url: string;
-  };
   topics: Array<{ id: string; name: string }>;
   createdById: string;
   uploadedAt: Date;
-  ownerId: number;
 };

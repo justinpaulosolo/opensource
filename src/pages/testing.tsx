@@ -1,4 +1,4 @@
-import { Button } from '@components/common/Button';
+import { Button } from '@components/common/button';
 import { trpc } from '@utils/trpc';
 
 export default function Testing() {

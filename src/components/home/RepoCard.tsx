@@ -22,21 +22,21 @@ const RepoCard = ({ repo, key }: { repo: Repo; key: number }) => {
         </div>
       </div>
       <a
-        href={repo.owner.url}
+        href="/"
         target="_blank"
         rel="noreferrer"
         className="flex items-center gap-2 rounded bg-gray-800 py-2 px-4"
       >
         <div>
           <Image
-            src={repo.owner.avatarUrl}
+            src="/"
             width={25}
             height={25}
             className="rounded-full"
             alt="Profile pic"
           />
         </div>
-        <span className="text-xs hover:underline">@{repo.owner.login}</span>
+        <span className="text-xs hover:underline">@test</span>
       </a>
     </div>
   );

@@ -4,7 +4,7 @@ import { trpc } from '@utils/trpc';
 import HomeLayout from '@components/home/HomeLayout';
 import RepoCard from '@components/home/RepoCard';
 import Spinner from '@components/common/Spinner';
-import { Button } from '@components/common/Button';
+import { Button } from '@components/common/button';
 
 const Home: NextPage = () => {
   const projects = trpc.project.getAll.useQuery();
