@@ -1,7 +1,15 @@
+import { AppRouter } from '@server/trpc/router/_app';
+import { inferProcedureOutput } from '@trpc/server';
 import Image from 'next/future/image';
-import { Repo } from 'types/types';
 
-const RepoCard = ({ repo, key }: { repo: Repo; key: number }) => {
+const RepoCard = ({
+  repo,
+  key,
+}: {
+  repo: inferProcedureOutput<AppRouter['project']['getAll']>;
+  key: number;
+}) => {
+  console.log(repo, 'from repo card');
   return (
     <div
       key={key}

@@ -6,6 +6,7 @@ export const projectRouter = t.router({
     return await ctx.prisma.project.findMany({
       include: {
         topics: true,
+        creator: true,
       },
     });
   }),
@@ -26,10 +27,10 @@ export const projectRouter = t.router({
       z.object({
         name: z.string(),
         fullName: z.string(),
-        description: z.string(),
+        description: z.nullable(z.string()),
         repolink: z.string(),
         creator: z.string(),
-        topics: z.array(z.string()),
+        topics: z.nullable(z.array(z.string())),
       })
     )
     .mutation(async ({ input, ctx }) => {
@@ -48,11 +49,10 @@ export const projectRouter = t.router({
             },
           },
           topics: {
-            create: input.topics.map((topic) => ({ name: topic })),
+            create: input.topics?.map((topic) => ({ name: topic })),
           },
         },
       });
-      console.log(project);
       return project;
     }),
 });

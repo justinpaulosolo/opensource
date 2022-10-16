@@ -62,7 +62,7 @@ model Project {
     id          String   @id @default(cuid())
     name        String
     fullName    String
-    description String
+    description String?
     repolink    String
     creator     User     @relation(fields: [createdById], references: [id])
     createdById String
