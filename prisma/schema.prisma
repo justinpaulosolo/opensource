@@ -59,26 +59,15 @@ model VerificationToken {
 }
 
 model Project {
-    id          String       @id @default(cuid())
+    id          String   @id @default(cuid())
     name        String
     fullName    String
-    description String
+    description String?
     repolink    String
-    owner       ProjectOwner @relation(fields: [ownerId], references: [id])
-    ownerId     Int
-    creator     User         @relation(fields: [createdById], references: [id])
+    creator     User     @relation(fields: [createdById], references: [id])
     createdById String
-    uploadedAt  DateTime     @default(now())
+    uploadedAt  DateTime @default(now())
     topics      Topics[]
-}
-
-model ProjectOwner {
-    id        Int       @id @unique
-    avatarUrl String
-    login     String
-    reposUrl  String
-    url       String
-    Project   Project[]
 }
 
 model Topics {

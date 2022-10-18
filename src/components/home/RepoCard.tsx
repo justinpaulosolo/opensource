@@ -1,7 +1,15 @@
+import { AppRouter } from '@server/trpc/router/_app';
+import { inferProcedureOutput } from '@trpc/server';
 import Image from 'next/future/image';
-import { Repo } from 'types/types';
 
-const RepoCard = ({ repo, key }: { repo: Repo; key: number }) => {
+const RepoCard = ({
+  repo,
+  key,
+}: {
+  repo: inferProcedureOutput<AppRouter['project']['getAll']>;
+  key: number;
+}) => {
+  console.log(repo, 'from repo card');
   return (
     <div
       key={key}
@@ -22,21 +30,21 @@ const RepoCard = ({ repo, key }: { repo: Repo; key: number }) => {
         </div>
       </div>
       <a
-        href={repo.owner.url}
+        href="/"
         target="_blank"
         rel="noreferrer"
         className="flex items-center gap-2 rounded bg-gray-800 py-2 px-4"
       >
         <div>
           <Image
-            src={repo.owner.avatarUrl}
+            src="/"
             width={25}
             height={25}
             className="rounded-full"
             alt="Profile pic"
           />
         </div>
-        <span className="text-xs hover:underline">@{repo.owner.login}</span>
+        <span className="text-xs hover:underline">@test</span>
       </a>
     </div>
   );

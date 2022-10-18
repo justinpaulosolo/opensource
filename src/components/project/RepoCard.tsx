@@ -1,13 +1,23 @@
 import { useState } from 'react';
 
 interface Props {
-  id: string;
-  title: string;
+  name: string;
+  fullName: string;
   description: string;
   repolink: string;
+  creator: string;
+  topics: Array<string>;
 }
 
-export default function RepoCard({ props }: { props: Props }) {
+export default function RepoCard({
+  props,
+  setter,
+  key,
+}: {
+  props: Props;
+  setter: any;
+  key: number;
+}) {
   // ** Move state to parent component.
   // ** This component should be a pure function.
   // ** It should not have any state.
@@ -15,12 +25,19 @@ export default function RepoCard({ props }: { props: Props }) {
 
   const toggleSelect = () => {
     console.log('Selected this items', isSelected);
+
     setIsSelected(!isSelected);
+
+    if (!!!isSelected) {
+      setter(props);
+    } else {
+      setter(null);
+    }
   };
 
   return (
     <div
-      key={props.id}
+      key={key}
       className={
         'w-full space-y-2 rounded border border-gray-800 bg-gray-900 p-5 transition-all hover:cursor-pointer' +
         (isSelected ? 'border-2 border-solid border-green-500' : 'border-none')
@@ -34,7 +51,7 @@ export default function RepoCard({ props }: { props: Props }) {
           rel="noreferrer"
           className="text-gray-0"
         >
-          {props.title}
+          {props.name}
         </a>
       </h1>
       <p className="text-gray-300">

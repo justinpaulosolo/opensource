@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { Button } from '@components/common/Button';
+import { Button } from '@components/common/button';
 import { TechIcon, TechListType } from '@components/project/TechIcons';
 
 interface Props {

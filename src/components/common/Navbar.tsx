@@ -1,6 +1,6 @@
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { Button } from '@components/common/Button';
+import { Button } from '@components/common/button';
 
 export default function Navbar() {
   const { status } = useSession();
