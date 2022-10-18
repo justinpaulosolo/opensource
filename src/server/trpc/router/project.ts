@@ -3,12 +3,14 @@ import { z } from 'zod';
 
 export const projectRouter = t.router({
   getAll: t.procedure.query(async ({ ctx }) => {
-    return await ctx.prisma.project.findMany({
+    const data = await ctx.prisma.project.findMany({
       include: {
         topics: true,
         creator: true,
       },
     });
+    console.log(data, "<-------")
+    return data;
   }),
   getAllByUser: authedProcedure.query(async ({ ctx }) => {
     return await ctx.prisma.project.findMany({
@@ -19,6 +21,7 @@ export const projectRouter = t.router({
       },
       include: {
         topics: true,
+        creator: true,
       },
     });
   }),
@@ -35,8 +38,6 @@ export const projectRouter = t.router({
     )
     .mutation(async ({ input, ctx }) => {
       const user = await ctx.session.user.id;
-      console.log(user);
-      console.log(input);
       const project = await ctx.prisma.project.create({
         data: {
           name: input.name,
@@ -54,5 +55,14 @@ export const projectRouter = t.router({
         },
       });
       return project;
-    }),
-});
+  }),
+  delete: authedProcedure
+  .input(z.string(),)
+  .mutation(async ({input, ctx}) => {
+    return ctx.prisma.project.delete({
+      where: {
+        id: input
+      }
+    })
+  }),
+})

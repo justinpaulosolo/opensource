@@ -8,7 +8,6 @@ import { Button } from '@components/common/button';
 
 const Home: NextPage = () => {
   const projects = trpc.project.getAll.useQuery();
-  console.log(projects.data);
   return (
     <HomeLayout>
       <div className="mx-auto w-full max-w-4xl bg-gray-900">
