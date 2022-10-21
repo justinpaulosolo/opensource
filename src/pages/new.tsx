@@ -1,23 +1,19 @@
-import { FaArrowLeft } from 'react-icons/fa';
 import { useRouter } from 'next/router';
-import { trpc } from '@utils/trpc';
-import RepoCard from '@components/project/RepoCard';
-import { Button } from '@components/common/button';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
+import { trpc } from '@utils/trpc';
+import { Button } from '@components/common/button';
+import { FaArrowLeft } from 'react-icons/fa';
+import RepoCard from '@components/project/RepoCard';
 
 export default function New() {
+  const session = useSession();
   const router = useRouter();
   const { data } = trpc.github.getReposTest.useQuery();
   const [selectedItem, setSelectedItem] = useState(null);
-  const session = useSession();
   const projectMutation = trpc.project.create.useMutation();
 
   console.log('This is the data we are getting: ', data?.data);
-
-  const handleSubmit = () => {
-    console.log('This is the selected item:', selectedItem);
-  };
 
   return (
     <div className="mx-auto mt-5 flex w-full max-w-4xl flex-col gap-5 bg-gray-900">
@@ -29,8 +25,7 @@ export default function New() {
           <FaArrowLeft className="text-gray-50" />
         </Button>
       </div>
-
-      <pre className="">{JSON.stringify(selectedItem)}</pre>
+      <h1 className="text-xl">Select one repo:</h1>
 
       <div className="grid grid-cols-2 gap-4">
         {data?.data?.map((item: any, i) => {
@@ -57,11 +52,13 @@ export default function New() {
 
       <button
         type="submit"
-        className="rounded-md border border-black bg-black py-4 text-sm tracking-wide text-white hover:bg-white hover:text-black"
+        className="mb-10 rounded-md border border-black bg-black py-4 text-sm tracking-wide text-white hover:bg-white hover:text-black"
         disabled={!!!selectedItem}
         onClick={() => {
           console.log(selectedItem);
-          projectMutation.mutate(selectedItem!);
+          projectMutation
+            .mutateAsync(selectedItem!)
+            .then(() => router.push('/'));
         }}
       >
         Submit
