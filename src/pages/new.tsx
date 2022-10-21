@@ -13,8 +13,6 @@ export default function New() {
   const [selectedItem, setSelectedItem] = useState(null);
   const projectMutation = trpc.project.create.useMutation();
 
-  console.log('This is the data we are getting: ', data?.data);
-
   return (
     <div className="mx-auto mt-5 flex w-full max-w-4xl flex-col gap-5 bg-gray-900">
       <div>
